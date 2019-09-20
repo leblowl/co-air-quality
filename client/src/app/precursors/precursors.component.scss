@@ -1,0 +1,34 @@
+@import 'styles/colors';
+
+.precursors-table {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.precursors-table th,
+.precursors-table td {
+  padding: 1em;
+}
+
+.precursors-table thead {
+  background: $color-cream;
+}
+
+.precursors-table tbody {
+  background: $color-cream-light4;
+}
+
+.precursors-table .checkbox {
+  width: 40px;
+}
+
+.precursors-table .checkmark {
+  border: 1px solid #777;
+  width: 20px;
+  height: 20px;
+  margin: auto;
+  cursor: pointer;
+  border-radius: 4px;
+}

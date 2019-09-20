@@ -1,0 +1,27 @@
+<div id="precursors-container">
+  <div id="title">
+    <h3>Ozone Precursors</h3>
+  </div>
+  <div class="body">
+   <table class="precursors-table">
+     <thead>
+       <tr>
+         <th></th>
+         <th>Analyte</th>
+         <th>Result</th>
+         <th>Site</th>
+         <th>Sample Date</th>
+       </tr>
+     </thead>
+     <tbody *ngFor="let precursor of precursors">
+       <tr>
+         <td class="checkbox"><div class="checkmark"></div></td>
+         <td>{{precursor.analyte}}</td>
+         <td>{{precursor.result + ' ' + precursor.units}}</td>
+         <td>{{precursor.site}}</td>
+         <td>{{precursor.sample_date}}</td>
+       </tr>
+     </tbody>
+   </table>
+  </div>
+</div>
