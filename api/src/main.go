@@ -5,5 +5,9 @@ import (
 )
 
 func main() {
-	app.Start()
+	var opts = map[string]string{"http-address": ":3030"}
+	var a = app.App{}
+
+	a.Init(opts)
+	a.Start()
 }
