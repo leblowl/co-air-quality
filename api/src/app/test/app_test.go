@@ -3,6 +3,7 @@ package test
 import (
 	app "co-air-quality.api/src/app"
 	"encoding/json"
+	"log"
 	"net/http"
 	"os"
 	"reflect"
@@ -13,10 +14,18 @@ var a app.App
 
 func TestMain(m *testing.M) {
 	a = app.App{}
-	a.Init(map[string]string{})
 
-	var code = m.Run()
+	var code int
+	var err = a.Init(map[string]string{})
 
+	if err == nil {
+		code = m.Run()
+	} else {
+		code = 1
+		// TODO: Figure out why logging doesn't appear to work in TestMain.
+		// Yet, logging in app.Init works fine.
+		log.Fatal("Fatal error during app initialization. Tests not run.")
+	}
 	os.Exit(code)
 }
 

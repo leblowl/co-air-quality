@@ -3,6 +3,7 @@ package app
 import (
 	"context"
 	"co-air-quality.api/src/app/route"
+	"co-air-quality.api/src/app/model"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
@@ -17,13 +18,26 @@ type App struct {
 	Server *http.Server
 }
 
-func (a *App) Init(opts map[string]string) {
+func (a *App) Init(opts map[string]string) error {
+	var err error
+
+	// Config
 	var httpAddress = opts["http-address"]
 
 	if httpAddress == "" {
 		httpAddress = ":8080"
 	}
 
+	// Data model
+	log.Println("Initializing data model...")
+	err = model.ImportData()
+	if err != nil {
+		log.Fatal(err)
+		return err
+	}
+	log.Println("Data model initialized.")
+
+	// HTTP server
 	log.Println("Server options:")
 	log.Println("  HTTP Address: " + httpAddress)
 
@@ -32,6 +46,7 @@ func (a *App) Init(opts map[string]string) {
 		Addr: httpAddress,
 		Handler: a.Handler,
 	}
+	return err
 }
 
 func (a *App) Start() {
